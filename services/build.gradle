@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'tomcat'
+apply plugin: 'jetty'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
@@ -33,9 +34,16 @@ dependencies {
     compile 'joda-time:joda-time:2.3'
     compile 'com.google.guava:guava:16.0'
 
+    /*
     compile 'org.springframework:spring-context:4.0.1.RELEASE'
     compile 'org.springframework:spring-web:4.0.1.RELEASE'
     compile 'org.springframework:spring-webmvc:4.0.1.RELEASE'
+      */
+
+    def springVersion = '3.2.7'
+    compile "org.springframework:spring-context:${springVersion}.RELEASE"
+    compile "org.springframework:spring-web:${springVersion}.RELEASE"
+    compile "org.springframework:spring-webmvc:${springVersion}.RELEASE"
 
     compile 'org.slf4j:slf4j-api:1.7.5'
     runtime 'org.slf4j:slf4j-jdk14:1.7.5'
@@ -44,7 +52,8 @@ dependencies {
     runtime 'com.fasterxml.jackson.core:jackson-databind:2.2.2'
     runtime 'javax.xml.bind:jaxb-api:2.2.9'
 
-    provided 'javax.servlet:javax.servlet-api:3.+'
+    //provided 'javax.servlet:javax.servlet-api:3.+'
+    provided 'javax.servlet:servlet-api:2.5'
 
     def tomcatVersion = '7.0.42'
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
@@ -53,7 +62,7 @@ dependencies {
         exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
     }
 
-    testCompile 'org.springframework:spring-test:4.0.1.RELEASE'
+    testCompile "org.springframework:spring-test:${springVersion}.RELEASE"
     testCompile 'org.mockito:mockito-all:1.9.5'
     testCompile 'com.jayway.jsonpath:json-path:0.9.0'
     testCompile 'com.jayway.jsonpath:json-path-assert:0.9.0'
