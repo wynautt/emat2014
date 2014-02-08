@@ -5,7 +5,7 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-    <!--filter>
+    <filter>
         <filter-name>ObjectifyFilter</filter-name>
         <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
     </filter>
@@ -13,7 +13,7 @@
     <filter-mapping>
         <filter-name>ObjectifyFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping-->
+    </filter-mapping>
 
     <!-- Configure ContextLoaderListener to use AnnotationConfigWebApplicationContext
        instead of the default XmlWebApplicationContext -->
@@ -29,7 +29,7 @@
          specified for component-scanning -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>com.zephyrusapps.edu.emat.service.config.MVCConfig</param-value>
+        <param-value>com.zephyrusapps.edu.emat.service.config.MVCConfig,com.zephyrusapps.edu.emat.service.config.CoreConfig</param-value>
     </context-param>
 
     <listener>
@@ -59,7 +59,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                com.zephyrusapps.edu.emat.service.config.MVCConfig
+                com.zephyrusapps.edu.emat.service.config.MVCConfig,com.zephyrusapps.edu.emat.service.config.CoreConfig
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -67,7 +67,7 @@
 
     <servlet-mapping>
         <servlet-name>webservice</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
     <security-constraint>

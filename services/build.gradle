@@ -33,6 +33,8 @@ repositories {
 dependencies {
     compile 'joda-time:joda-time:2.3'
     compile 'com.google.guava:guava:16.0'
+    compile 'com.googlecode.objectify:objectify:4.0b3'
+    //compile "com.googlecode.objectify-appengine-spring:objectify-appengine-spring:1.1.1"
 
     /*
     compile 'org.springframework:spring-context:4.0.1.RELEASE'
@@ -41,6 +43,7 @@ dependencies {
       */
 
     def springVersion = '3.2.7'
+    compile "org.springframework:spring-core:${springVersion}.RELEASE"
     compile "org.springframework:spring-context:${springVersion}.RELEASE"
     compile "org.springframework:spring-web:${springVersion}.RELEASE"
     compile "org.springframework:spring-webmvc:${springVersion}.RELEASE"
