@@ -1,11 +1,18 @@
-package com.zephyrusapps.edu.emat.service.operations;
+package com.zephyrusapps.edu.emat.service.rest.domain;
 
-public class ViewQuestionOp {
+import com.zephyrusapps.edu.emat.service.domain.Exam;
+
+public class ExamData {
 
     String course;
     int year;
     String phase;
-    String number;
+
+    public ExamData(Exam exam) {
+        this.course = exam.getCourse();
+        this.year = exam.getYear();
+        this.phase = exam.getPhase();
+    }
 
     public String getCourse() {
         return course;
@@ -29,13 +36,5 @@ public class ViewQuestionOp {
 
     public void setPhase(String phase) {
         this.phase = phase;
-    }
-
-    public String getNumber() {
-        return number.replace(".", ":");
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 }

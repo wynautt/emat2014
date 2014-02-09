@@ -10,6 +10,7 @@ import java.util.List;
 @XmlRootElement
 public class QuestionData implements Serializable {
 
+    private String course;
     private int year;
     private String phase;
     private String group;
@@ -22,6 +23,7 @@ public class QuestionData implements Serializable {
     }
 
     public QuestionData(Question question) {
+        this.course = question.getExam().getCourse();
         this.year = question.getExam().getYear();
         this.phase = question.getExam().getPhase();
         this.group = "unknown";
@@ -65,7 +67,8 @@ public class QuestionData implements Serializable {
     }
 
     public String getNumber() {
-        return number;
+        //Hack due to lack of support for keys with '.' by objectify
+        return number.replace(":", ".");
     }
 
     public void setNumber(String number) {
@@ -96,10 +99,19 @@ public class QuestionData implements Serializable {
         this.text = text;
     }
 
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
     @Override
     public String toString() {
-        return "Question{" +
-                "year=" + year +
+        return "QuestionData{" +
+                "course='" + course + '\'' +
+                ", year=" + year +
                 ", phase='" + phase + '\'' +
                 ", group='" + group + '\'' +
                 ", number='" + number + '\'' +

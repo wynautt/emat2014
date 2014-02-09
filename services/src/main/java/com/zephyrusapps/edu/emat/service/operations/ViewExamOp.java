@@ -1,11 +1,9 @@
 package com.zephyrusapps.edu.emat.service.operations;
 
-public class ViewQuestionOp {
-
+public class ViewExamOp {
     String course;
-    int year;
+    int year = -1;
     String phase;
-    String number;
 
     public String getCourse() {
         return course;
@@ -31,11 +29,15 @@ public class ViewQuestionOp {
         this.phase = phase;
     }
 
-    public String getNumber() {
-        return number.replace(".", ":");
+    public boolean hasCourse() {
+        return course != null && !course.isEmpty();
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public boolean hasYear() {
+        return year > 0;
+    }
+
+    public boolean hasPhase() {
+        return phase != null && !phase.isEmpty();
     }
 }

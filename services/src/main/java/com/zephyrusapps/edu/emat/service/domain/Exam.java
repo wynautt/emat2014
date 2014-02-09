@@ -2,7 +2,9 @@ package com.zephyrusapps.edu.emat.service.domain;
 
 import com.googlecode.objectify.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -82,6 +84,16 @@ public class Exam {
     }
 
     public Map<String, Question> getQuestions() {
+        for(Question q: questions.values()) {
+            q.setExam(this);
+        }
         return questions;
+    }
+
+    public List<Question> getQuestionList() {
+        for(Question q: questions.values()) {
+            q.setExam(this);
+        }
+        return new ArrayList<Question>(questions.values());
     }
 }

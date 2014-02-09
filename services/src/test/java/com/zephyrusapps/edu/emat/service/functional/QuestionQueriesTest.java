@@ -21,25 +21,15 @@ public class QuestionQueriesTest {
         return headers;
     }
 
+
     @Test
-    public void thatQuestionCanBeQueried() {
-        RestTemplate template = new RestTemplate();
-
-        ResponseEntity<QuestionData> entity = template.getForEntity(
-                "http://localhost:8080/api/exam/MatematicaA12/2012/1f/2",
-                QuestionData.class);
-
-        assertEquals(HttpStatus.OK, entity.getStatusCode());
-
-        QuestionData q = entity.getBody();
-
-        assertEquals(2012, q.getYear());
-        assertEquals("1f", q.getPhase());
-        assertEquals("2", q.getNumber());
-        assertEquals("dummy question", q.getText());
+    public void thatExamCanBeCreatedWithQuestionsAndQueried() {
+        thatExamCanBeCreated();
+        thatQuestionCanBeCreated();
+        thatQuestionCanBeQueried();
     }
 
-    @Test
+
     public void thatExamCanBeCreated() {
         RestTemplate template = new RestTemplate();
 
@@ -53,17 +43,35 @@ public class QuestionQueriesTest {
         assertEquals(HttpStatus.CREATED, entity.getStatusCode());
     }
 
-    @Test
+
     public void thatQuestionCanBeCreated() {
         RestTemplate template = new RestTemplate();
 
         HttpEntity<String> requestEntity = new HttpEntity<String>(RestFixture.exQuestion2(), getHeaders());
 
         ResponseEntity<Void> entity = template.postForEntity(
-                "http://localhost:8080/api/exam/MatematicaA12/2012/1f/create",
+                "http://localhost:8080/api/exam/MatematicaA12/2012/1f/question/create",
                 requestEntity,
                 Void.class);
 
         assertEquals(HttpStatus.CREATED, entity.getStatusCode());
     }
+
+    public void thatQuestionCanBeQueried() {
+        RestTemplate template = new RestTemplate();
+
+        ResponseEntity<QuestionData> entity = template.getForEntity(
+                "http://localhost:8080/api/exam/MatematicaA12/2012/1f/question/2",
+                QuestionData.class);
+
+        assertEquals(HttpStatus.OK, entity.getStatusCode());
+
+        QuestionData q = entity.getBody();
+
+        assertEquals(2012, q.getYear());
+        assertEquals("1f", q.getPhase());
+        assertEquals("2", q.getNumber());
+        assertEquals("dummy question", q.getText());
+    }
+
 }
