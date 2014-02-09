@@ -1,6 +1,9 @@
 package com.zephyrusapps.edu.emat.service.rest.controller;
 
+import com.mangofactory.swagger.annotations.ApiError;
+import com.mangofactory.swagger.annotations.ApiErrors;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.zephyrusapps.edu.emat.service.operations.CreateExamOp;
 import com.zephyrusapps.edu.emat.service.operations.CreateQuestionOp;
@@ -33,6 +36,8 @@ public class QuestionController {
         int a = 1;
     }
 
+    @ApiOperation("Get a question from an exam")
+    @ApiErrors(errors = {@ApiError(code = 404, reason = "Exam or question number do not exist")})
     @RequestMapping(method = RequestMethod.GET, value = "/{course}/{year}/{phase}/{number}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -54,12 +59,19 @@ public class QuestionController {
         return q;*/
     }
 
+    @ApiOperation("Create a new exam")
+    @ApiErrors(errors = {@ApiError(code = 400, reason = "Invalid data received")})
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createExam(@RequestBody CreateExamOp op) {
         questionServices.createExam(op);
     }
 
+    @ApiOperation("Create a new question")
+    @ApiErrors(errors = {
+            @ApiError(code = 400, reason = "Invalid data received") ,
+            @ApiError(code = 404, reason = "Exam does not exist")
+    })
     @RequestMapping(method = RequestMethod.POST, value = "/{course}/{year}/{phase}/create")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
