@@ -34,6 +34,7 @@ dependencies {
     compile 'joda-time:joda-time:2.3'
     compile 'com.google.guava:guava:16.0'
     compile 'com.googlecode.objectify:objectify:4.0b3'
+
     //compile "com.googlecode.objectify-appengine-spring:objectify-appengine-spring:1.1.1"
 
     /*
@@ -47,6 +48,14 @@ dependencies {
     compile "org.springframework:spring-context:${springVersion}.RELEASE"
     compile "org.springframework:spring-web:${springVersion}.RELEASE"
     compile "org.springframework:spring-webmvc:${springVersion}.RELEASE"
+
+    //not compatible with GAE
+    //compile "com.knappsack:swagger4spring-web:0.3.1"
+
+
+    compile ("com.mangofactory:swagger-springmvc:0.6.6") {
+        exclude group: "org.slf4j"
+    }
 
     compile 'org.slf4j:slf4j-api:1.7.5'
     runtime 'org.slf4j:slf4j-jdk14:1.7.5'

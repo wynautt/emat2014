@@ -1,11 +1,14 @@
 package com.zephyrusapps.edu.emat.service.rest.domain;
 
+import com.zephyrusapps.edu.emat.service.domain.Question;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
-public class Question implements Serializable {
+public class QuestionData implements Serializable {
 
     private int year;
     private String phase;
@@ -15,11 +18,20 @@ public class Question implements Serializable {
     private List<String> answers;
     private String text;
 
-    public Question() {
-
+    public QuestionData() {
     }
 
-    public Question(int year, String phase, String group, String number, List<String> answers, String text) {
+    public QuestionData(Question question) {
+        this.year = question.getExam().getYear();
+        this.phase = question.getExam().getPhase();
+        this.group = "unknown";
+        this.number = question.getNumber();
+        this.themes = new ArrayList<String>(question.getThemes());
+        this.answers = new ArrayList<String>(question.getAnswers());
+        this.text = question.getText();
+    }
+
+    public QuestionData(int year, String phase, String group, String number, List<String> answers, String text) {
         this.year = year;
         this.phase = phase;
         this.group = group;
