@@ -49,6 +49,12 @@ dependencies {
     compile "org.springframework:spring-web:${springVersion}.RELEASE"
     compile "org.springframework:spring-webmvc:${springVersion}.RELEASE"
 
+    def springSecurityVersion = '3.2.0.RELEASE'
+    compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+    compile "org.springframework.security:spring-security-core:${springSecurityVersion}"
+    compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
+
+
     //not compatible with GAE
     //compile "com.knappsack:swagger4spring-web:0.3.1"
 

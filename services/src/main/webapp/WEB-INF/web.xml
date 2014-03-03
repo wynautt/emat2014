@@ -6,6 +6,18 @@
          version="2.5">
 
     <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>ObjectifyFilter</filter-name>
         <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
     </filter>
@@ -13,6 +25,7 @@
     <filter-mapping>
         <filter-name>ObjectifyFilter</filter-name>
         <url-pattern>/*</url-pattern>
+        <!--TODO review mappings-->
     </filter-mapping>
 
     <filter>
@@ -23,7 +36,9 @@
     <filter-mapping>
         <filter-name>CORSFilter</filter-name>
         <url-pattern>/*</url-pattern>
+        <!--TODO review mappings-->
     </filter-mapping>
+
 
     <!-- Configure ContextLoaderListener to use AnnotationConfigWebApplicationContext
        instead of the default XmlWebApplicationContext -->
@@ -39,7 +54,12 @@
          specified for component-scanning -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>com.zephyrusapps.edu.emat.service.config.MVCConfig,com.zephyrusapps.edu.emat.service.config.CoreConfig,com.zephyrusapps.edu.emat.service.config.CustomDocumentationConfig</param-value>
+        <param-value>
+            com.zephyrusapps.edu.emat.service.config.MVCConfig,
+            com.zephyrusapps.edu.emat.service.config.CoreConfig,
+            com.zephyrusapps.edu.emat.service.config.CustomDocumentationConfig,
+            com.zephyrusapps.edu.emat.service.config.SecurityConfig
+        </param-value>
     </context-param>
 
     <listener>
@@ -78,6 +98,16 @@
     <servlet-mapping>
         <servlet-name>webservice</servlet-name>
         <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>openidauth</servlet-name>
+        <servlet-class>com.zephyrusapps.edu.emat.service.auth.OpenIdDemoServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>openidauth</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <security-constraint>

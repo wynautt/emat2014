@@ -20,7 +20,7 @@ public class CustomDocumentationConfig {
         // Swagger expects these to property values to be replaced. We don't want to propagate these to consumers of
         // this configuration, so we derive reasonable defaults here and configure the properties programmatically.
         Properties properties = new Properties();
-        properties.setProperty("documentation.services.basePath", "http://localhost:8080/api/");
+        properties.setProperty("documentation.services.basePath", "http://emat2alpha.exames-matematica.appspot.com/api/");
         // this property will be overridden at runtime, so the value here doesn't matter
         properties.setProperty("documentation.services.version", "1.0");
 
