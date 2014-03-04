@@ -58,14 +58,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/_ah/**").permitAll()
-                .antMatchers("/login/**").permitAll()
-                .antMatchers("/**").hasAuthority("USER");
+                .antMatchers("/login/**").permitAll();
+                //.antMatchers("/**").hasAuthority("USER");
 
         http.exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint())
             .and()
                 .addFilterAfter(authenticationFilter(), AbstractPreAuthenticatedProcessingFilter.class)
                 .authenticationProvider(authenticationProvider())
+            .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("dev_appserver_login", "JSESSIONID")
+            .and()
                 .csrf()
                     .disable();
     }

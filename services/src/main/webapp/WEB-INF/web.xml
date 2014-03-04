@@ -18,6 +18,26 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>characterEncoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>characterEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>ObjectifyFilter</filter-name>
         <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
     </filter>
@@ -55,10 +75,11 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            com.zephyrusapps.edu.emat.service.config.MVCConfig,
+            <!--com.zephyrusapps.edu.emat.service.config.MVCConfig,
             com.zephyrusapps.edu.emat.service.config.CoreConfig,
             com.zephyrusapps.edu.emat.service.config.CustomDocumentationConfig,
-            com.zephyrusapps.edu.emat.service.config.SecurityConfig
+            com.zephyrusapps.edu.emat.service.config.SecurityConfig-->
+            com.zephyrusapps.edu.emat.service.config.EmatApplicationContext
         </param-value>
     </context-param>
 
@@ -97,7 +118,8 @@
 
     <servlet-mapping>
         <servlet-name>webservice</servlet-name>
-        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/</url-pattern>
+        <!--url-pattern>/api/*</url-pattern-->
     </servlet-mapping>
 
     <servlet>
@@ -107,7 +129,7 @@
     
     <servlet-mapping>
         <servlet-name>openidauth</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <url-pattern>/login2</url-pattern>
     </servlet-mapping>
 
     <security-constraint>

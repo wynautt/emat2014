@@ -26,8 +26,10 @@ buildscript {
     }
 }
 
+
 repositories {
-    maven { url 'http://repo.spring.io/milestone/'}
+    maven { url 'http://repo.spring.io/milestone/' }
+    maven { url 'http://repo.spring.io/snapshot'  }
 }
 
 dependencies {
@@ -53,6 +55,17 @@ dependencies {
     compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
     compile "org.springframework.security:spring-security-core:${springSecurityVersion}"
     compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
+    compile "org.springframework.security:spring-security-taglibs:${springSecurityVersion}"
+
+    def springSocialVersion = '1.1.0.BUILD-SNAPSHOT'
+    compile "org.springframework.social:spring-social-core:${springSocialVersion}"
+    compile "org.springframework.social:spring-social-security:${springSocialVersion}"
+    compile "org.springframework.social:spring-social-web:${springSocialVersion}"
+    compile "org.springframework.social:spring-social-facebook:${springSocialVersion}"
+    compile "org.springframework.social:spring-social-twitter:${springSocialVersion}"
+
+    //compile "org.hibernate:hibernate-validator:5.1.0.Final"
+    compile "org.hibernate:hibernate-validator:4.2.0.Final"
 
 
     //not compatible with GAE
@@ -72,6 +85,7 @@ dependencies {
 
     //provided 'javax.servlet:javax.servlet-api:3.+'
     provided 'javax.servlet:servlet-api:2.5'
+    provided 'javax.servlet:jstl:1.2'
 
     def tomcatVersion = '7.0.42'
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",

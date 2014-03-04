@@ -17,10 +17,10 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.zephyrusapps.edu.emat.service.rest.controller",
-        "com.zephyrusapps.edu.emat.service.auth.controller"
+        "com.zephyrusapps.edu.emat.service.auth.controller",
+        "com.zephyrusapps.edu.emat.service.auth.services"
     })
-public class MVCConfig extends WebMvcConfigurerAdapter {
+public class WebAppContext extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -32,7 +32,7 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-    @Bean
+    //@Bean
     public SimpleMappingExceptionResolver exceptionResolver() {
         SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
 
