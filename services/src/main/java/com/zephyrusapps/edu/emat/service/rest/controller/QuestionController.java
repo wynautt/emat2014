@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/exam")
+@RequestMapping("/api/exam")
 public class QuestionController {
 
     private static Logger LOG = LoggerFactory.getLogger(QuestionController.class);

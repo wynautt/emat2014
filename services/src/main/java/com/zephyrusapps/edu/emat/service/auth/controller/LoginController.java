@@ -1,12 +1,15 @@
 package com.zephyrusapps.edu.emat.service.auth.controller;
 
+import com.mangofactory.swagger.annotations.ApiIgnore;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+
 public class LoginController {
 
+    @ApiIgnore
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String showLoginPage() {
         return "user/login";

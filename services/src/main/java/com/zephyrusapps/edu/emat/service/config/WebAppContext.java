@@ -18,7 +18,8 @@ import java.util.Properties;
 @EnableWebMvc
 @ComponentScan(basePackages = {
         "com.zephyrusapps.edu.emat.service.auth.controller",
-        "com.zephyrusapps.edu.emat.service.auth.services"
+        "com.zephyrusapps.edu.emat.service.auth.services",
+        "com.zephyrusapps.edu.emat.service.rest.controller"
     })
 public class WebAppContext extends WebMvcConfigurerAdapter {
 

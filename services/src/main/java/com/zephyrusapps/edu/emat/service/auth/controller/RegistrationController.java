@@ -1,5 +1,6 @@
 package com.zephyrusapps.edu.emat.service.auth.controller;
 
+import com.mangofactory.swagger.annotations.ApiIgnore;
 import com.zephyrusapps.edu.emat.service.auth.SecurityUtil;
 import com.zephyrusapps.edu.emat.service.auth.registration.RegistrationForm;
 import com.zephyrusapps.edu.emat.service.auth.services.DuplicateEmailException;
@@ -34,6 +35,7 @@ public class RegistrationController {
         this.service = service;
     }
 
+    @ApiIgnore
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
         Connection<?> connection = ProviderSignInUtils.getConnection(request);
@@ -44,6 +46,7 @@ public class RegistrationController {
         return "user/registrationForm";
     }
 
+    @ApiIgnore
     @RequestMapping(value ="/user/register", method = RequestMethod.POST)
     public String registerUserAccount(@Valid @ModelAttribute("user") RegistrationForm userAccountData,
                                       BindingResult result,

@@ -7,7 +7,13 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 //@ComponentScan(basePackages = {})
-@Import({WebAppContext.class, PersistenceContext.class, SocialContext.class, SecurityContext.class})
+@Import({
+        CoreConfig.class,
+        CustomDocumentationConfig.class,
+        WebAppContext.class,
+        PersistenceContext.class,
+        SocialContext.class,
+        SecurityContext.class})
 @PropertySource("classpath:application.properties")
 public class EmatApplicationContext {
 
@@ -22,7 +28,7 @@ public class EmatApplicationContext {
     }
 
     @Bean
-    public PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
+    public static PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 }
