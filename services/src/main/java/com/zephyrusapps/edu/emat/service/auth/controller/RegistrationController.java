@@ -78,6 +78,7 @@ public class RegistrationController {
 
             ConnectionKey providerKey = connection.getKey();
             dto.setSignInProvider(SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase()));
+            dto.setSignInProviderKey(providerKey.getProviderUserId());
         }
 
         return dto;

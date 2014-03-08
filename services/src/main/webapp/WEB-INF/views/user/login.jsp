@@ -74,7 +74,7 @@
             <div class="row social-button-row">
                 <div class="col-lg-4">
                     <!-- Add Facebook sign in button -->
-                    <a href="<c:url value="/auth/facebook"/>"><button class="btn btn-facebook"><i class="icon-facebook"></i> | <spring:message code="label.facebook.sign.in.button"/></button></a>
+                    <a href="<c:url value="/auth/facebook?scope=email"/>"><button class="btn btn-facebook"><i class="icon-facebook"></i> | <spring:message code="label.facebook.sign.in.button"/></button></a>
                 </div>
             </div>
             <div class="row social-button-row">
@@ -92,6 +92,12 @@
 -->
 <sec:authorize access="isAuthenticated()">
     <p><spring:message code="text.login.page.authenticated.user.help"/></p>
+    <c:if test="${principal != null}">
+        <p><spring:message code="text.login.page.authenticated.user"/> ${principal.firstName} ${principal.lastName}</p>
+        <security:authentication property="principal.username" />
+    </c:if>
 </sec:authorize>
+
+
 </body>
 </html>

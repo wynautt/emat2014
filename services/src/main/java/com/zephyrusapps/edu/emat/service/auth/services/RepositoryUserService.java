@@ -37,7 +37,10 @@ public class RepositoryUserService implements UserService {
                 .role(EmatRole.ROLE_USER);
 
         if (userAccountData.isSocialSignIn()) {
-            user.signInProvider(userAccountData.getSignInProvider());
+            user
+                    .signInProvider(userAccountData.getSignInProvider())
+                    .signInProviderKey(userAccountData.getSignInProviderKey());
+
         }
 
         EmatUser registered = user.build();

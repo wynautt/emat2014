@@ -37,6 +37,7 @@
                 -->
                 <c:if test="${user.signInProvider != null}">
                     <form:hidden path="signInProvider"/>
+                    <form:hidden path="signInProviderKey"/>
                 </c:if>
                 <div class="row">
                     <div id="form-group-firstName" class="form-group col-lg-4">

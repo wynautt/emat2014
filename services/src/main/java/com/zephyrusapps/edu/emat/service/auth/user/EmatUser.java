@@ -14,6 +14,7 @@ public class EmatUser implements Serializable {
     private String password;
     private EmatRole role;
     private SocialMediaService signInProvider;
+    private String signInProviderKey;
     private boolean enabled;
 
     private EmatUser() {
@@ -27,6 +28,7 @@ public class EmatUser implements Serializable {
         private String password;
         private EmatRole role;
         private SocialMediaService signInProvider;
+        private String signInProviderKey;
         private boolean enabled;
 
         public Builder(String email) {
@@ -63,6 +65,11 @@ public class EmatUser implements Serializable {
             return this;
         }
 
+        public Builder signInProviderKey(String signInProviderKey) {
+            this.signInProviderKey = signInProviderKey;
+            return this;
+        }
+
         public Builder enabled(boolean enabled) {
             this.enabled = enabled;
             return this;
@@ -78,6 +85,7 @@ public class EmatUser implements Serializable {
             user.lastName = lastName;
             user.role = role;
             user.signInProvider = signInProvider;
+            user.signInProviderKey = signInProviderKey;
             user.enabled = enabled;
 
             return user;
@@ -110,6 +118,10 @@ public class EmatUser implements Serializable {
 
     public SocialMediaService getSignInProvider() {
         return signInProvider;
+    }
+
+    public String getSignInProviderKey() {
+        return signInProviderKey;
     }
 
     public boolean isEnabled() {

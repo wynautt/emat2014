@@ -35,6 +35,7 @@ public class RegistrationForm implements Serializable {
     private String password;
     private String passwordVerification;
     private SocialMediaService signInProvider;
+    private String signInProviderKey;
 
     public RegistrationForm() {
     }
@@ -93,5 +94,13 @@ public class RegistrationForm implements Serializable {
 
     public void setSignInProvider(SocialMediaService signInProvider) {
         this.signInProvider = signInProvider;
+    }
+
+    public void setSignInProviderKey(String signInProviderKey) {
+        this.signInProviderKey = signInProviderKey;
+    }
+
+    public String getSignInProviderKey() {
+        return signInProviderKey;
     }
 }

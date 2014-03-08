@@ -21,6 +21,7 @@ public class GaeUserRepository implements UserRepository {
     private static final String USER_ENABLED = "enabled";
     private static final String USER_AUTHORITIES = "authorities";
     private static final String USER_SIGNIN_PROVIDER = "signInProvider";
+    private static final String USER_SIGNIN_PROVIDER_KEY = "signInProviderKey";
 
 
     @Override
@@ -36,6 +37,7 @@ public class GaeUserRepository implements UserRepository {
             String lastName = (String)user.getProperty(USER_LASTNAME);
             String password = (String)user.getProperty(USER_PASSWORD);
             String signInProvider = (String)user.getProperty(USER_SIGNIN_PROVIDER);
+            String signInProviderKey = (String)user.getProperty(USER_SIGNIN_PROVIDER_KEY);
             boolean enabled = (Boolean)user.getProperty(USER_ENABLED);
 
             EmatUser ematUser = new EmatUser.Builder(email)
@@ -43,6 +45,7 @@ public class GaeUserRepository implements UserRepository {
                     .lastName(lastName)
                     .password(password)
                     .signInProvider(signInProvider != null ? SocialMediaService.valueOf(signInProvider) : null)
+                    .signInProviderKey(signInProviderKey)
                     .role(EmatRole.valueOf(authorities))
                     .enabled(enabled)
                     .build();
@@ -65,7 +68,8 @@ public class GaeUserRepository implements UserRepository {
         user.setProperty(USER_LASTNAME, newUser.getLastName());
         user.setProperty(USER_PASSWORD, newUser.getPassword());
 
-        user.setUnindexedProperty(USER_SIGNIN_PROVIDER, newUser.getSignInProvider());
+        user.setUnindexedProperty(USER_SIGNIN_PROVIDER, newUser.getSignInProvider() != null ? newUser.getSignInProvider().toString() : null);
+        user.setProperty(USER_SIGNIN_PROVIDER_KEY, newUser.getSignInProviderKey());
         user.setUnindexedProperty(USER_AUTHORITIES, newUser.getRole().toString());
         user.setUnindexedProperty(USER_ENABLED, newUser.isEnabled());
 
